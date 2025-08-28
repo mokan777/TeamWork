@@ -1,2 +1,44 @@
-test lab 
+class Square:
+    def __init__(self, side):
+        self.side = side
+
+    def circumscribed_circle_radius(self):
+        # Радиус описанной окружности (половина диагонали)
+        return self.side * math.sqrt(2) / 2
+    def circumscribed_circle_area(self):
+        # Площадь описанной окружности
+        return math.pi * (self.circumscribed_circle_radius() ** 2)
+    def inscribed_circle_radius(self):
+        # Радиус вписанной окружности (половина стороны)
+        return self.side / 2
+    def inscribed_circle_area(self):
+        # Площадь вписанной окружности
+        return math.pi * (self.inscribed_circle_radius() ** 2)
+    def area(self):
+        # Площадь квадрата
+        return self.side ** 2
+    def perimeter(self):
+        # Периметр квадрата
+        return 4 * self.side
+
+    def draw(self):
+        # Визуализация квадрата
+        fig, ax = plt.subplots()
+        # Координаты вершин квадрата
+        half_side = self.side / 2
+        vertices = [
+            (-half_side, -half_side),
+            (-half_side, half_side),
+            (half_side, half_side),
+            (half_side, -half_side),
+            (-half_side, -half_side)  # Замыкаем квадрат
+        ]
+        # Разделяем координаты X и Y
+        x, y = zip(*vertices)
+        # Рисуем квадрат
+        ax.plot(x, y, 'b-', linewidth=2)
+        ax.fill(x, y, alpha=0.3, color='blue')
+        ax.set_aspect('equal')
+        ax.set_title('Квадрат')
+        ax.grid(True)
 
