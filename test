@@ -15,7 +15,7 @@ class Square:
         # Площадь вписанной окружности
         return math.pi * (self.inscribed_circle_radius() ** 2)
     def area(self):
-        # Площадь квадрата
+        # Площадь квадрата ()
         return self.side ** 2
     def perimeter(self):
         # Периметр квадрата
@@ -24,7 +24,7 @@ class Square:
     def draw(self):
         # Визуализация квадрата
         fig, ax = plt.subplots()
-        # Координаты вершин квадрата
+        # Координаты вершин квадрата 
         half_side = self.side / 2
         vertices = [
             (-half_side, -half_side),
