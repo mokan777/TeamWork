@@ -1,7 +1,7 @@
 class Square:
     def __init__(self, side):
         self.side = side
-
+#свага 
     def circumscribed_circle_radius(self):
         # Радиус описанной окружности (половина диагонали)
         return self.side * math.sqrt(2) / 2
