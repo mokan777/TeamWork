@@ -1,32 +1,43 @@
-#класс square
+import math
+import matplotlib.pyplot as plt
+
 class Square:
     def __init__(self, side):
+        """Инициализация квадрата с длиной стороны side"""
         self.side = side
-#свага 
+
     def circumscribed_circle_radius(self):
-        # Радиус описанной окружности (половина диагонали)
+        """Радиус описанной окружности (половина диагонали)"""
         return self.side * math.sqrt(2) / 2
+
     def circumscribed_circle_area(self):
-        # Площадь описанной окружности
+        """Площадь описанной окружности"""
         return math.pi * (self.circumscribed_circle_radius() ** 2)
+
     def inscribed_circle_radius(self):
-        # Радиус вписанной окружности (половина стороны)
+        """Радиус вписанной окружности (половина стороны)"""
         return self.side / 2
+
     def inscribed_circle_area(self):
-        # Площадь вписанной окружности
+        """Площадь вписанной окружности"""
         return math.pi * (self.inscribed_circle_radius() ** 2)
+
     def area(self):
-        # Площадь квадрата
+        """Площадь квадрата"""
         return self.side ** 2
+
     def perimeter(self):
-        # Периметр квадрата
+        """Периметр квадрата"""
         return 4 * self.side
 
     def draw(self):
-        # Визуализация квадрата
+        """Отрисовка квадрата с вписанной и описанной окружностями"""
         fig, ax = plt.subplots()
-        # Координаты вершин квадрата
+
+        # Половина стороны
         half_side = self.side / 2
+
+        # Координаты вершин квадрата
         vertices = [
             (-half_side, -half_side),
             (-half_side, half_side),
@@ -34,12 +45,26 @@ class Square:
             (half_side, -half_side),
             (-half_side, -half_side)  # Замыкаем квадрат
         ]
+
         # Разделяем координаты X и Y
         x, y = zip(*vertices)
+
         # Рисуем квадрат
         ax.plot(x, y, 'b-', linewidth=2)
         ax.fill(x, y, alpha=0.3, color='blue')
-        ax.set_aspect('equal')
-        ax.set_title('Квадрат')
-        ax.grid(True)
 
+        # Добавляем вписанную окружность
+        inscribed_radius = self.inscribed_circle_radius()
+        inscribed_circle = plt.Circle((0, 0), inscribed_radius, color='green', fill=False, linestyle='--', linewidth=2)
+        ax.add_patch(inscribed_circle)
+
+        # Добавляем описанную окружность
+        circumscribed_radius = self.circumscribed_circle_radius()
+        circumscribed_circle = plt.Circle((0, 0), circumscribed_radius, color='red', fill=False, linestyle='-', linewidth=2)
+        ax.add_patch(circumscribed_circle)
+
+        # Настройки графика
+        ax.set_aspect('equal')
+        ax.set_title('Квадрат с вписанной и описанной окружностями')
+        ax.grid(True)
+        plt.show()
